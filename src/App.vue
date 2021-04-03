@@ -1,18 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <label>Ingresar Pokemones</label>
+    <input v-model="pokemon" type="text">
+    <button @click="ingresarPokemon()">Ingresar Pokemon</button>
+      <ol>
+        <li v-for="(pokemon,index) in pokemones" :key="index">
+          {{pokemon}}
+        </li>
+      </ol>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+//import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
+data() {
+  return {
+  pokemones:["Mew","Ditto", "Dragonite","Moltres","Pikachu"],
+  pokemon:"",
+  };
+},
+methods:{
+  async getData(){
+   },
+   ingresarPokemon(){
+     if(this.pokemon === "")return;
+     this.pokemones.push(this.pokemon);
+     this.pokemon="";
+   }
+
+},
+  
 };
 </script>
 
@@ -24,5 +44,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  
 }
+li{
+  position:relative;
+  top:5rem;
+  left: 2rem;
+}
+label{
+  margin:3rem;
+}
+button{
+  margin: 2rem;
+}
+
 </style>
